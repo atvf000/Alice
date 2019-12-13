@@ -7,6 +7,14 @@ RULES = '''\n- Число в ячейке показывает, сколько �
 
 ALICE_TURN = ''' \nМой ход!'''
 
+COMMANDS = ''' - открыть <буква> <цифра>\n
+- отметить <буква> <цифра>\n
+- убрать <буква> <цифра>\n
+- помощь\n
+- показать\n
+- правила\n
+- команды\n'''
+
 
 def isWin(values, typeC):
     count = 0
@@ -296,8 +304,11 @@ def handle_dialog(request, response, user_storage):
         if command[0] == "показать":
             answer = printF(values, typeC)
 
-        elif command[0] == "правила":
+        elif command[0] == "правила" or command[0] == "помощь":
             answer = RULES
+
+        elif command[0] == "команды" or user_message == "что ты умеешь":
+            answer = COMMANDS
 
         elif command[0] == "чит":
             answer = printC(values)
