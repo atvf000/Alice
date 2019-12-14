@@ -41,7 +41,7 @@ class Test_1(unittest.TestCase):
         }
 
         user_storage = {
-            "user_id": request.user_id,
+            "user_id": "56ED627ECBA15CD74D5CF77980EF2354C895831C9D6709D0652EF7CE32735EB6",
             "users_turn": True,
             "matrix": [[0 for j in range(10)] for i in range(10)],
             "open_cells": [[0 for j in range(10)] for i in range(10)],
