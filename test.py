@@ -82,7 +82,7 @@ class Test_1(unittest.TestCase):
             ensure_ascii=False,
             indent=2
         )
-        self.assertEqual(user_storage2, user_storage)1
+        self.assertEqual(user_storage2, user_storage)
 
 class Test_2(unittest.TestCase):
     def test_newgame(self):
