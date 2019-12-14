@@ -237,7 +237,7 @@ class Test_3(unittest.TestCase):
         self.assertNotEqual(user_storage["matrix"], user_storage2["matrix"])
 
 
-class Test_5(unittest.TestCase):
+class Test_4(unittest.TestCase):
     def test_flag(self):
         request = {
             "meta": {
@@ -335,7 +335,7 @@ class Test_5(unittest.TestCase):
         self.assertTrue(typeC[0][0] == 2)
 
 
-class Test_6(unittest.TestCase):
+class Test_5(unittest.TestCase):
     def test_open(self):
         request = {
             "meta": {

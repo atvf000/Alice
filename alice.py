@@ -1,3 +1,6 @@
+##@package alice
+# Файл с реализацией самой игры Алисы
+
 from __future__ import unicode_literals
 from random import randint
 
@@ -15,7 +18,11 @@ COMMANDS = ''' - открыть <буква> <цифра>\n
 - правила\n
 - команды\n'''
 
-
+## Проверка победы
+#@param values: матрица с элементами
+#@param typeC: матрица с состояниями элементов
+# Функция для определения победы в игре
+#@return Возвращает истину, если победил, ложь, если нет
 def isWin(values, typeC):
     count = 0
     for i in range(10):
