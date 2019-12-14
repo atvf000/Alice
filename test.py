@@ -74,10 +74,11 @@ class Test_1(unittest.TestCase):
         alice_response, user_storage2 = handle_dialog(
             alice_request, alice_response, user_storage
         )
+        user_storage["matrix"] = user_storage2["matrix"]
 
         json_str = json.dumps(
             response,
             ensure_ascii=False,
             indent=2
         )
-        self.assertEqual(user_storage2,user_storage)
+        self.assertEqual(user_storage2, user_storage)
