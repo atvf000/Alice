@@ -240,34 +240,46 @@ class Test_3(unittest.TestCase):
 class Test_4(unittest.TestCase):
     def test_init(self):
         request = {
-            "meta": {
-
-                "client_id": "ru.yandex.searchplugin/7.16 (none none; android 4.4.2)",
-                "interfaces": {
-                    "account_linking": {},
-                    "payments": {},
-                    "screen": {}
-                },
-                "locale": "ru-RU",
-                "timezone": "UTC"
+          "meta": {
+            "client_id": "ru.yandex.searchplugin/7.16 (none none; android 4.4.2)",
+            "interfaces": {
+              "account_linking": {},
+              "payments": {},
+              "screen": {}
             },
-            "request": {
-                "command": "отметить а 0",
-                "nlu": {
-                    "entities": [],
-                    "tokens": []
-                },
-                "original_utterance": "",
-                "type": "SimpleUtterance"
+            "locale": "ru-RU",
+            "timezone": "UTC"
+          },
+          "request": {
+            "command": "отметить а 0",
+            "nlu": {
+              "entities": [
+                {
+                  "tokens": {
+                    "end": 3,
+                    "start": 2
+                  },
+                  "type": "YANDEX.NUMBER",
+                  "value": 0
+                }
+              ],
+              "tokens": [
+                "отметить",
+                "а",
+                "0"
+              ]
             },
-            "session": {
-                "message_id": 0,
-                "new": True,
-                "session_id": "d62bb4d3-984a4120-9ec254cc-96e71d84",
-                "skill_id": "241f1b35-e113-4472-b31f-9183918c6e91",
-                "user_id": "56ED627ECBA15CD74D5CF77980EF2354C895831C9D6709D0652EF7CE32735EB6"
-            },
-            "version": "1.0"
+            "original_utterance": "отметить а 0",
+            "type": "SimpleUtterance"
+          },
+          "session": {
+            "message_id": 2,
+            "new": False,
+            "session_id": "e9603bd5-37d9492d-c8bdc10c-e83f00f5",
+            "skill_id": "241f1b35-e113-4472-b31f-9183918c6e91",
+            "user_id": "56ED627ECBA15CD74D5CF77980EF2354C895831C9D6709D0652EF7CE32735EB6"
+          },
+          "version": "1.0"
         }
 
         user_storage = {
@@ -282,18 +294,26 @@ class Test_4(unittest.TestCase):
         response = {
             "version": "1.0",
             "session": {
-                "message_id": 0,
-                "new": True,
-                "session_id": "d62bb4d3-984a4120-9ec254cc-96e71d84",
+                "message_id": 2,
+                "new": False,
+                "session_id": "e9603bd5-37d9492d-c8bdc10c-e83f00f5",
                 "skill_id": "241f1b35-e113-4472-b31f-9183918c6e91",
                 "user_id": "56ED627ECBA15CD74D5CF77980EF2354C895831C9D6709D0652EF7CE32735EB6"
             },
             "response": {
                 "end_session": False,
-                "text": "Привет! Давай сыграем в Сапера!"
-                        " \n- Число в ячейке показывает, сколько мин скрыто вокруг данной ячейки\n"
-                        "\n- Если рядом с открытой ячейкой есть пустая ячейка, то она откроется автоматически.\n"
-                        "\n- Если вы открыли ячейку с миной, то игра проиграна."
+                "text": "|◽| а | б | в | г | д | е | ж | з | и | к |\n"
+                        "| 0 | F | x | x | x | x | x | x | x | x | x |\n"
+                        "| 1 | x | x | x | x | x | x | x | x | x | x |\n"
+                        "| 2 | x | x | x | x | x | x | x | x | x | x |\n"
+                        "| 3 | x | x | x | x | x | x | x | x | x | x |\n"
+                        "| 4 | x | x | x | x | x | x | x | x | x | x |\n"
+                        "| 5 | x | x | x | x | x | x | x | x | x | x |\n|"
+                        " 6 | x | x | x | x | x | x | x | x | x | x |\n"
+                        "| 7 | x | x | x | x | x | x | x | x | x | x |\n"
+                        "| 8 | x | x | x | x | x | x | x | x | x | x |\n"
+                        "| 9 | x | x | x | x | x | x | x | x | x | x |\n "
+                        "\nМой ход!"
             }
         }
 
