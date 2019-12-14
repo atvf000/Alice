@@ -34,7 +34,12 @@ def isWin(values, typeC):
         return True
     return False
 
-
+## Функция бота
+#@param values: матрица с элементами
+#@param typeC: матрица с состояниями элементов
+#@param step: этап игры
+# Функция искуственного интелекта для игры
+#@return Возвращает текст с полем
 def bot(values, typeC, step):
     probability = prob(step)
     if probability == 1:
@@ -42,7 +47,11 @@ def bot(values, typeC, step):
     else:
         return cleverOpen(values, typeC)
 
-
+## Функция случайного открытия
+#@param values: матрица с элементами
+#@param typeC: матрица с состояниями элементов
+# Функция искуственного интелекта для случайного открытия клетки
+#@return Возвращает текст с полем
 def randOpen(values, typeC):
     done = False
     while not done:
@@ -51,7 +60,13 @@ def randOpen(values, typeC):
         if typeC[x][y] == 0:
             return openC(values, typeC, x, y)
 
-
+## Функция поиска элементов рядом
+#@param typeC: матрица с состояниями элементов
+#@param i: координата i
+#@param j: координата j
+#@param smth: заданный элемент
+# Функция для определения количества заданных элементов рядом с точкой
+#@return Возвращает количество
 def isSmthNear(typeC, i, j, smth):
     count = 0
     if 0 < i:
@@ -80,7 +95,12 @@ def isSmthNear(typeC, i, j, smth):
             count += 1
     return count
 
-
+## Функция изменения элементов рядом
+#@param typeC: матрица с состояниями элементов
+#@param i: координата i
+#@param j: координата j
+#@param smth: заданный элемент
+# Функция для изменения точек заданным элементом рядом с заданной точкой
 def SmthNear(typeC, i, j, smth):
     if 0 < i:
         if typeC[i - 1][j] == 0:
@@ -107,7 +127,11 @@ def SmthNear(typeC, i, j, smth):
         if typeC[i][j + 1] == 0:
             typeC[i][j + 1] = smth
 
-
+## Функция анализированного открытия
+#@param values: матрица с элементами
+#@param typeC: матрица с состояниями элементов
+# Функция искуственного интелекта для открытия клетки с анализом
+#@return Возвращает текст с полем
 def cleverOpen(values, typeC):
     done = False
     find = False
@@ -133,11 +157,17 @@ def cleverOpen(values, typeC):
         find = False
     return printF(values, typeC)
 
-
+## Функция вероятности
+#@param step: шаг игры
+# Функция для подсчета вероятности
+#@return возвращает истину или ложь в зависимости от рандома
 def prob(step):
     return (100 / step) > randint(0, 100)
 
-
+## Функция вероятности
+#@param step: шаг игры
+# Функция для подсчета вероятности
+#@return возвращает истину или ложь в зависимости от рандома
 def isFree(point):
     return point == 0
 
