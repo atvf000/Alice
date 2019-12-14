@@ -237,49 +237,49 @@ class Test_3(unittest.TestCase):
         self.assertNotEqual(user_storage["matrix"], user_storage2["matrix"])
 
 
-class Test_4(unittest.TestCase):
-    def test_init(self):
+class Test_5(unittest.TestCase):
+    def test_flag(self):
         request = {
-          "meta": {
-            "client_id": "ru.yandex.searchplugin/7.16 (none none; android 4.4.2)",
-            "interfaces": {
-              "account_linking": {},
-              "payments": {},
-              "screen": {}
+            "meta": {
+                "client_id": "ru.yandex.searchplugin/7.16 (none none; android 4.4.2)",
+                "interfaces": {
+                    "account_linking": {},
+                    "payments": {},
+                    "screen": {}
+                },
+                "locale": "ru-RU",
+                "timezone": "UTC"
             },
-            "locale": "ru-RU",
-            "timezone": "UTC"
-          },
-          "request": {
-            "command": "отметить а 0",
-            "nlu": {
-              "entities": [
-                {
-                  "tokens": {
-                    "end": 3,
-                    "start": 2
-                  },
-                  "type": "YANDEX.NUMBER",
-                  "value": 0
-                }
-              ],
-              "tokens": [
-                "отметить",
-                "а",
-                "0"
-              ]
+            "request": {
+                "command": "отметить а 0",
+                "nlu": {
+                    "entities": [
+                        {
+                            "tokens": {
+                                "end": 3,
+                                "start": 2
+                            },
+                            "type": "YANDEX.NUMBER",
+                            "value": 0
+                        }
+                    ],
+                    "tokens": [
+                        "отметить",
+                        "а",
+                        "0"
+                    ]
+                },
+                "original_utterance": "отметить а 0",
+                "type": "SimpleUtterance"
             },
-            "original_utterance": "отметить а 0",
-            "type": "SimpleUtterance"
-          },
-          "session": {
-            "message_id": 2,
-            "new": False,
-            "session_id": "e9603bd5-37d9492d-c8bdc10c-e83f00f5",
-            "skill_id": "241f1b35-e113-4472-b31f-9183918c6e91",
-            "user_id": "56ED627ECBA15CD74D5CF77980EF2354C895831C9D6709D0652EF7CE32735EB6"
-          },
-          "version": "1.0"
+            "session": {
+                "message_id": 2,
+                "new": False,
+                "session_id": "e9603bd5-37d9492d-c8bdc10c-e83f00f5",
+                "skill_id": "241f1b35-e113-4472-b31f-9183918c6e91",
+                "user_id": "56ED627ECBA15CD74D5CF77980EF2354C895831C9D6709D0652EF7CE32735EB6"
+            },
+            "version": "1.0"
         }
 
         user_storage = {
@@ -333,3 +333,101 @@ class Test_4(unittest.TestCase):
         typeC = user_storage2["open_cells"]
 
         self.assertTrue(typeC[0][0] == 2)
+
+
+class Test_6(unittest.TestCase):
+    def test_open(self):
+        request = {
+            "meta": {
+                "client_id": "ru.yandex.searchplugin/7.16 (none none; android 4.4.2)",
+                "interfaces": {
+                    "account_linking": {},
+                    "payments": {},
+                    "screen": {}
+                },
+                "locale": "ru-RU",
+                "timezone": "UTC"
+            },
+            "request": {
+                "command": "открыть а 0",
+                "nlu": {
+                    "entities": [
+                        {
+                            "tokens": {
+                                "end": 3,
+                                "start": 2
+                            },
+                            "type": "YANDEX.NUMBER",
+                            "value": 0
+                        }
+                    ],
+                    "tokens": [
+                        "открыть",
+                        "а",
+                        "0"
+                    ]
+                },
+                "original_utterance": "открыть а 0",
+                "type": "SimpleUtterance"
+            },
+            "session": {
+                "message_id": 2,
+                "new": False,
+                "session_id": "9699790a-2946eeb4-42e2915d-6b3639e7",
+                "skill_id": "241f1b35-e113-4472-b31f-9183918c6e91",
+                "user_id": "56ED627ECBA15CD74D5CF77980EF2354C895831C9D6709D0652EF7CE32735EB6"
+            },
+            "version": "1.0"
+        }
+
+        user_storage = {
+            "user_id": "56ED627ECBA15CD74D5CF77980EF2354C895831C9D6709D0652EF7CE32735EB6",
+            "users_turn": True,
+            "matrix": [[0 for j in range(10)] for i in range(10)],
+            "open_cells": [[0 for j in range(10)] for i in range(10)],
+            "step": 0
+
+        }
+
+        response = {
+            "version": "1.0",
+            "session": {
+                "message_id": 2,
+                "new": False,
+                "session_id": "9699790a-2946eeb4-42e2915d-6b3639e7",
+                "skill_id": "241f1b35-e113-4472-b31f-9183918c6e91",
+                "user_id": "56ED627ECBA15CD74D5CF77980EF2354C895831C9D6709D0652EF7CE32735EB6"
+            },
+            "response": {
+                "end_session": False,
+                "text": "|◽| а | б | в | г | д | е | ж | з | и | к |\n"
+                        "| 0 |◽|◽| 1 | x | x | x | x | x | x | x |\n"
+                        "| 1 |◽|◽| 1 | x | x | x | x | x | x | x |\n"
+                        "| 2 |◽|◽| 1 | 1 | 1 | x | x | x | x | x |\n"
+                        "| 3 |◽|◽|◽|◽|◽| 1 | x | x | x | x |\n"
+                        "| 4 |◽|◽|◽|◽|◽| 1 | x | x | x | x |\n|"
+                        " 5 |◽| 1 | 1 | 1 |◽| 1 | x | x | x | x |\n"
+                        "| 6 |◽| 1 | x | 1 |◽|◽| 1 | x | x | x |\n"
+                        "| 7 | 1 | x | x | x | 1 | 1 | x | x | x | x |\n"
+                        "| 8 | x | x | x | x | x | x | x | x | x | x |\n"
+                        "| 9 | x | x | x | x | x | x | x | x | x | x |\n"
+                        " \nМой ход!"
+            }
+        }
+
+        alice_request = AliceRequest(request)
+
+        alice_response = AliceResponse(alice_request)
+
+        alice_response, user_storage2 = handle_dialog(
+            alice_request, alice_response, user_storage
+        )
+
+        json_str = json.dumps(
+            response,
+            ensure_ascii=False,
+            indent=2
+        )
+        typeC = user_storage2["open_cells"]
+
+        self.assertTrue(typeC[0][0] == 1)
