@@ -80,4 +80,4 @@ class Test_1(unittest.TestCase):
             ensure_ascii=False,
             indent=2
         )
-        self.assertEqual((alice_response.dumps(), user_storage2), (json_str, user_storage), "Я вас не поняла :(")
+        self.assertEqual(user_storage2,user_storage)
