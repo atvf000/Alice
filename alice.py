@@ -164,14 +164,18 @@ def cleverOpen(values, typeC):
 def prob(step):
     return (100 / step) > randint(0, 100)
 
-## Функция вероятности
-#@param step: шаг игры
-# Функция для подсчета вероятности
-#@return возвращает истину или ложь в зависимости от рандома
+## Функция определения пустой клетки
+#@param point: клетка
+# Функция для определения является ли эта клетка пустой
+#@return истину, если клетка пустая
 def isFree(point):
     return point == 0
 
-
+## Функция открытия клетки
+#@param values: матрица с элементами
+#@param typeC: матрица с состояниями элементов
+# Функция для открытия клетки в игре
+#@return Возвращает текст с полем
 def openC(values, typeC, x, y):
     if typeC[x][y] == 0:
         typeC[x][y] = 1
@@ -183,7 +187,13 @@ def openC(values, typeC, x, y):
     else:
         return "Эта клетка уже открыта"
 
-
+## Функция открытия клеткок рядом
+#@param values: матрица с элементами
+#@param typeC: матрица с состояниями элементов
+#@param x: координата x
+#@param y: координата y
+# Функция для рекурсивного открытия клеток рядом, если они пустые
+#@return Возвращает текст с полем
 def openNear(values, typeC, x, y):
     if 0 < x:
         if typeC[x - 1][y] == 0:
@@ -214,7 +224,13 @@ def openNear(values, typeC, x, y):
             elif typeC[x][y + 1] == 0:
                 typeC[x][y + 1] = 1
 
-
+## Функция постановки флага
+#@param values: матрица с элементами
+#@param typeC: матрица с состояниями элементов
+#@param x: координата x
+#@param y: координата y
+# Функция для постановки флага в текущую точку
+#@return Возвращает текст с полем
 def flag(values, typeC, x, y):
     if typeC[x][y] == 0:
         typeC[x][y] = 2
@@ -222,7 +238,13 @@ def flag(values, typeC, x, y):
     else:
         return "Эта клетка уже отмечена"
 
-
+## Функция удаления флага
+#@param values: матрица с элементами
+#@param typeC: матрица с состояниями элементов
+#@param x: координата x
+#@param y: координата y
+# Функция для удаления флага в текущую точку
+#@return Возвращает текст с полем
 def unFlag(values, typeC, x, y):
     if typeC[x][y] == 2:
         typeC[x][y] = 0
@@ -230,11 +252,17 @@ def unFlag(values, typeC, x, y):
     else:
         return "Эта клетка не отмечена флагом"
 
-
+## Функция определения бомбы
+#@param point: клетка
+# Функция для определения является ли эта клетка бомбой
+#@return истину, если клетка бомба
 def isBomb(point):
     return point == -1
 
-
+## Функция инициализации
+#@param values: матрица с элементами
+# Функция первичной инициализации
+#@return Возвращает текст с полем
 def init(values):
     free = False
     x, y = 0, 0
@@ -269,7 +297,11 @@ def init(values):
 
 COLUMNS = ['а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'к']
 
-
+## Функция печати поля
+#@param values: матрица с элементами
+#@param typeC: матрица с состояниями элементов
+# Функция для печати поля игры
+#@return Возвращает текст с полем
 def printF(values, typeC):
     printField = '|◽|'
     printField += '|'.join([f' {i} ' for i in COLUMNS])
@@ -291,7 +323,11 @@ def printF(values, typeC):
         printField += "|\n"
     return printField
 
-
+## Функция печати читов
+#@param values: матрица с элементами
+#@param typeC: матрица с состояниями элементов
+# Функция для печати поля игры
+#@return Возвращает текст с полем читов
 def printC(values):
     printField = '|◽|'
     printField += '|'.join([f' {i} ' for i in COLUMNS])
@@ -308,7 +344,12 @@ def printC(values):
         printField += "|\n"
     return printField
 
-
+## Функция обработки диалога
+#@param request: запрос пользователя
+#@param response: ответ пользователю
+#@param user_storage: данные сессии
+# Основная функция для обработки всех диалогов с Алисой
+#@return Возвращаем ответ пользователю и данные сессии
 def handle_dialog(request, response, user_storage):
     if request.is_new_session or user_storage is None:
         values = [[0 for j in range(10)] for i in range(10)]
@@ -401,7 +442,13 @@ def handle_dialog(request, response, user_storage):
 
     return response, user_storage
 
-
+## Функция окончания игры
+#@param request: запрос пользователя
+#@param response: ответ пользователю
+#@param user_storage: данные сессии
+#@param фтыцук: последний ответ пользователю
+# Функция, запускающаяся в самом конце для инициализации новой игры
+#@return Возвращаем данные сессии
 def end(request, response, user_storage, answer):
     values = user_storage["matrix"]
     typeC = user_storage["open_cells"]
