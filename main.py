@@ -1,39 +1,30 @@
-# coding: utf-8
-# Импортирует поддержку UTF-8.
+##@package main
+# Файл с реализацией flask-приложения
+
 from __future__ import unicode_literals
 
-# Импортируем модули для работы с логами.
 import logging
 
-# Импортируем модуль для работы с json
 import json
 
-# Импортируем модуль для работы с API Алисы
 from AliceClass import AliceRequest, AliceResponse
 
-# Импортируем модуль с логикой игры
 from alice import handle_dialog
 
-# Импортируем подмодули Flask для запуска веб-сервиса.
 from flask import Flask, request
 app = Flask(__name__)
 
-
-logging.basicConfig(level=logging.DEBUG)
-
-# Хранилище данных о сессиях.
-
 session_storage = {}
 
-# Операвтивная памятьна heroku не стабильна, поэтому придется сохраняться на диск
 with open("sessions.json", "w", encoding="utf8") as file:
     json.dump(session_storage, fp=file)
 
-
-# Задаем параметры приложения Flask.
 @app.route("/", methods=["POST"])
+
+## Основная функция
+# Функция для взаимодействия между пользователем и сайтом
+#@return   Функция получает тело запроса и возвращает ответ
 def main():
-    # Функция получает тело запроса и возвращает ответ.
     with open("sessions.json", encoding="utf8") as file:
         session_storage = json.loads(file.read())
 
