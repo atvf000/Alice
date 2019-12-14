@@ -75,6 +75,7 @@ class Test_1(unittest.TestCase):
             alice_request, alice_response, user_storage
         )
         user_storage["matrix"] = user_storage2["matrix"]
+        user_storage["matrix"] += 1
 
         json_str = json.dumps(
             response,
