@@ -1,0 +1,15 @@
+language: python
+python:
+  - "2.7"
+  - "3.6"
+  - "3.7-dev"
+
+install:
+- pip install -r requirements.txt
+- pip install -r tests/requirements.txt
+
+script:
+- python -m flake8 --max-line-length=110 tester_alice_skill_flask
+- python -m coverage run test_buy_elephant.py
+- python -m coveralls
+- python -m coverage report --skip-covered
